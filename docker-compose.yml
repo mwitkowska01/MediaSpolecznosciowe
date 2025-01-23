@@ -1,0 +1,50 @@
+services:
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1435:1433"
+    restart: always
+
+  postapi:
+    image: postapi
+    build:
+      context: .
+      dockerfile: PostApi/Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      - ASPNETCORE_URLS=http://+:5003
+      - ConnectionStrings__DefaultConnection=Server=mssql,1433;Database=PostDb;User=sa;Password=YourStrong@Passw0rd;
+    depends_on:
+      - mssql
+
+  peopleapi:
+    image: peopleapi
+    build:
+      context: .
+      dockerfile: PeopleApi/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_URLS=http://+:5001
+      - ConnectionStrings__DefaultConnection=Server=mssql,1433;Database=PeopleDb;User=sa;Password=YourStrong@Passw0rd;
+    depends_on:
+      - mssql
+
+  identityapi:
+    image: identityapi
+    build:
+      context: .
+      dockerfile: IdentityApi/Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - ASPNETCORE_URLS=http://+:5002
+      - ConnectionStrings__DefaultConnection=Server=mssql,1433;Database=IdentityDb;User=sa;Password=YourStrong@Passw0rd;
+    depends_on:
+      - mssql

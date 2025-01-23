@@ -1,0 +1,10 @@
+services:
+  identityapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+  postapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+  peopleapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

@@ -1,0 +1,32 @@
+
+body, html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffccff; /* Delikatny róż */
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  background: black;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+
+.logout-btn {
+  float: right;
+  padding: 5px 10px;
+  background-color: #ff6699;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
